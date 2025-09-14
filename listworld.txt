@@ -1,0 +1,14 @@
+return {
+   "NBQJB", "SIRFZ", "RVLBD", "IOPNF", 
+   "WWCFU", "UUCQN", "JLKWO", "XNHMZ", "IZWVJ", 
+   "ZDYPU", "OUNGD", "RVSJB", "GCERB", "XUQFW", 
+   "YMMBG", "MZGSF", "XWAPE", "ZQJPD", "VTAKG", 
+   "UVPRN", "RILCH", "IUHXF", "YTGKG", "YTQZA", 
+   "ZVLHA", "MLJYX", "HDGCI", "WVHMR", "EGCGN", 
+   "ZJLTY", "PXPSD", "ZTBLT", "FZOGD", "IEITX", 
+	"IGGVJ", "IMJTY", "NJYEO", "UQLVD", "TDWIF",
+	"NGFOH", "KCHVU", "QJBUD", "XGZIJ", "OJGNP",
+	"LQCUB", "JZHFB", "DTKFK", "YDAYJ", "QUVMF",
+	"SWSBF", "IGXDX", "ETRNJ", "STKFW", "UJBOL",
+	"ICFND", "QDQBE", "THEHG", "TLZWP", "SBFCP"
+}
