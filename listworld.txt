@@ -1,16 +1,19 @@
-return {
-   "NBQJB", "SIRFZ", "RVLBD", "IOPNF", 
-   "WWCFU", "UUCQN", "JLKWO", "XNHMZ", "IZWVJ", 
-   "ZDYPU", "OUNGD", "RVSJB", "GCERB", "XUQFW", 
-   "YMMBG", "MZGSF", "XWAPE", "ZQJPD", "VTAKG", 
-   "UVPRN", "RILCH", "IUHXF", "YTGKG", "YTQZA", 
-   "ZVLHA", "MLJYX", "HDGCI", "WVHMR", "EGCGN", 
-   "ZJLTY", "PXPSD", "ZTBLT", "FZOGD", "IEITX", 
-	"IGGVJ", "IMJTY", "NJYEO", "UQLVD", "TDWIF",
-	"NGFOH", "KCHVU", "QJBUD", "XGZIJ", "OJGNP",
-	"LQCUB", "JZHFB", "DTKFK", "YDAYJ", "QUVMF",
-	"SWSBF", "IGXDX", "ETRNJ", "STKFW", "UJBOL",
-	"ICFND", "QDQBE", "THEHG", "TLZWP", "SBFCP", "BTEMT", "SYAMX", "KCRIG", "PDJJB", 
-   "HCLHX", "OAVJF", "OCZYP", "ZRVZO", "WLEFK", 
-   "XFNOW", "MYLTB", "ADMJO"
-}
+-- ambil nama bot
+local botName = getBot().name
+
+-- tentukan path desktop
+-- Windows (ganti USERNAME dengan nama user di PC kamu)
+local desktopPath = "C:/Users/USERNAME/Desktop/botname.txt"
+
+-- Linux/Android (biasanya folder Home/Desktop)
+-- local desktopPath = os.getenv("HOME") .. "/Desktop/botname.txt"
+
+-- buka file untuk menulis
+local file = io.open(desktopPath, "w")
+if file then
+    file:write(botName)
+    file:close()
+    print("Nama bot berhasil disimpan di Desktop: " .. botName)
+else
+    print("Gagal membuat file di Desktop.")
+end
