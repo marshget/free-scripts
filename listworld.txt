@@ -1,1 +1,22 @@
-0
+local accounts = [[
+02279CAFC8808167D5EB255256E156AF|svbcqnhf@icloud.com==02279CAFC8808167D5EB255256E156AF|dW7fgjdDOtZb5AIFqMc2RkBRQc3Nvo74aeLLA7wreRghxNBx5tqcUNVbI4JUziphhMkQSwJgRr32WPLs009mRIoSEdJJ4olPR8w1igiLYq99f6a2fCu5F73tbSMCWOXnS+C4unq0Fh5aD+bLKhXJaVfl2RLvm5kSVymDC+nzLSlxklk28+lFthzpSnvlkZ6O7O9t3R1KkcBYH9zBQGDqnkYD2FqAJYlFfXed8s9iWI2S/Y+MdqNAimJSvSytIVFX4K83Lvgpaf4eXYMq8ZVW0Gh9QodQOi3R80gwdgYbI5dwAsHvptCnfUAycMvNvpsJuuu2v/X+93oRgT/aEB71iJORWyY6a7OwgYPX0Qfz/AAajfY3U4XIjOpUxY88OVA7KOfAWon+D20vB92O6c6w8FNCLaVA7Wc+LL1YUiUm1a4ynabDZtSmef+ICwHJPkEHbpP9v4dqpjcBc6mXXqbAKtslMAak24q9Wti8kySAXSnmTFFXD9wjN7wNR6Qk+b3P
+]]
+
+for account in accounts:gmatch("[^\r\n]+") do
+    local rid, token = account:match("==([^|]+)|(.+)")
+    
+    if rid and token then
+        local details = {
+            ["name"] = token,
+            ["rid"] = rid,
+            ["mac"] = "02:00:00:00:00:00",
+            ["wk"] = "NONE0",
+            ["platform"] = 1,
+        }
+
+        addBot(details)
+        sleep(3)
+    else
+        print("Gagal parsing rid/token: " .. account)
+    end
+end
