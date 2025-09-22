@@ -1,1 +1,114 @@
-0
+moveItemID = 880
+
+nameWorlds = {
+  "TAPIFANIJU",
+"JABANOXOSI",
+"XITILEYEHA",
+"XIMUJIQOVA",
+"QQKGZRBVWF"
+}
+
+worldIndex = 1
+worldID = "Z1612"
+
+storageWorld = "WBLOCK999"
+storageID = "Z1612"
+
+move_interval = 230
+move_range = 6
+
+getBot():setInterval(Action.move, move_interval / 1000)
+getBot().move_range = move_range
+bot = getBot()
+inventory = bot:getInventory()
+world = bot:getWorld()
+
+function join(worldName, id)
+    while bot:getWorld().name ~= worldName:upper() do
+        bot:warp(worldName, id or "")
+        sleep(5000)
+    end
+end
+
+function scanFloat(id)
+    local count = 0
+    for _, obj in pairs(getObjects()) do
+        if obj.id == id then
+            count = count + obj.count
+        end
+    end
+    return count
+end
+
+function takeFloat(id)
+    for _, obj in pairs(world:getObjects()) do
+        if obj.id == id then
+            bot:findPath(math.floor(obj.x / 32), math.floor(obj.y / 32))
+            sleep(200)
+            -- berhenti kalau sudah penuh
+            if inventory:getItemCount(id) >= 200 then
+                break
+            end
+        end
+    end
+end
+
+function drop()
+    bot.auto_collect = false
+    sleep(200)
+    join(storageWorld, storageID)
+    itemDrops = {moveItemID, moveItemID + 1}
+    for _, itemId in pairs(itemDrops) do
+        local attempt = 0
+        while inventory:getItemCount(itemId) > 0 do
+            attempt = attempt + 1
+            local amount = inventory:getItemCount(itemId)
+            bot:drop(itemId, amount)
+            sleep(100)
+            if inventory:getItemCount(itemId) == 0 then
+                break
+            end
+            if attempt >= 2 then
+                local bot_x, bot_y = math.floor(bot.x), math.floor(bot.y)
+                bot:findPath(bot_x + 1, bot_y)
+                sleep(100)
+                attempt = 0
+            end
+        end
+    end
+    -- balik ke world farming
+    join(nameWorlds[worldIndex], worldID)
+    sleep(500)
+end
+
+function mainTake()
+    bot.auto_collect = true
+    bot.collect_range = 5
+    takeFloat(moveItemID)
+
+    -- drop hanya kalau inventory sudah penuh
+    if inventory:getItemCount(moveItemID) >= 200 then
+        drop()
+    end
+end
+
+function main()
+    while true do
+        join(nameWorlds[worldIndex], worldID)
+        sleep(1000)
+
+        if scanFloat(moveItemID) >= 1 then
+            mainTake()
+        else
+            worldIndex = worldIndex + 1
+            if worldIndex > #nameWorlds then
+                worldIndex = 1
+            end
+            join(nameWorlds[worldIndex], worldID)
+        end
+
+        sleep(1000)
+    end
+end
+
+main()
