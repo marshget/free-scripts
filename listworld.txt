@@ -24,3 +24,4 @@ for account in accounts:gmatch("[^\r\n]+") do
         print("Gagal parsing rid/token: " .. account)
     end
 end
+
